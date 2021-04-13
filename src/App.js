@@ -5,7 +5,6 @@ import logo from './logo.svg';
 import './App.css';
 
 import tests from './test/dummyData';
-import makeDummyTest from './test/makeDummyTest';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,26 +30,24 @@ class App extends React.Component {
     const { clicked, testStatus } = this.state;
 
     return (
-      <div className="RootContainer">
-        <h1>Test Runner</h1>
+      <div className="AppContainer">
+        <h1>Automated Test Runner</h1>
 
-        <div className="testsList">
+        <div className="testList">
           {(this.state.tests).map(test => {
 
             return (
-              <div key={test.description}>
-                <div style={{ display: "flex", flexDirection: "column" }}>
+              <div key={test.description} className="testItem">
                   <p>{test.description}</p>
                   {!clicked && <span style={{background:'grey'}}>Test did not run yet</span>}
-                  {clicked && testStatus === 'running' && <span style={{background:'limegreen'}}>Test is running</span>}
+                  {clicked && testStatus === 'running' && <span style={{background:'#17a2b8'}}>Test is running</span>}
                   {testStatus === 'passed' && <span style={{background:'green'}}>Test passed</span>}
                   {testStatus === 'failed' && <span style={{background:'darkred'}}>Test failed</span>}
-                </div>
               </div>
             );
           })}
         </div>
-        <button className="testRunner" onClick={this.handleClick}>Run these tests</button>
+        <button className="testRunner" onClick={this.handleClick}>Run tests</button>
       </div>
     );
   }
